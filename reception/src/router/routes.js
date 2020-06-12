@@ -4,6 +4,8 @@ const Login = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Login.vue");
 const Index = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Index.vue");
+const IndexItem = () =>
+  import(/* webpackChunkName: "BasicLayout" */ "@/views/IndexItem.vue");
 const Occupation = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Occupation.vue");
 const Project = () =>
@@ -16,6 +18,8 @@ const UserEdit = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/UserEdit.vue");
 const UserSecurity = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/UserSecurity.vue");
+const Course = () =>
+  import(/* webpackChunkName: "BasicLayout" */ "@/views/Course.vue");
 
 export default [
   {
@@ -37,6 +41,11 @@ export default [
             title: "首页"
           }
         },
+      },
+      {
+        path:"/api/index/item/:id",
+        name:"IndexItem",
+        component:IndexItem
       },
       {
         path:"/api/occupation",
@@ -98,5 +107,10 @@ export default [
         ]
       }
     ]
+  },
+  {
+    path:'/api/web/course/:id/:sectionId',
+    name:'Course',
+    component:Course
   }
 ]

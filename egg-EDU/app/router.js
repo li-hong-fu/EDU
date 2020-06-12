@@ -106,14 +106,17 @@ module.exports = app => {
   router.delete('/api/advertise/material/:id', jwt, controller.advertise.deleteMaterial)//删除广告关联
   router.post('/api/advertise/material/sort/edit', jwt, controller.advertise.sort)//广告关联排序
 
-  router.post('/api/sms/send', controller.users.sendSMS)//前台获取短信验证
-  router.post('/api/sms/login', controller.users.smsLogin)//前台用户登录
-  router.post('/api/auth/social/wechat/url', controller.wechat.wechat)//用户微信登录
-  router.get('/api/user/user-info/:id', jwt, controller.users.getUserInfo)//获取用户详情
-  router.put('/api/user/user-info/:id', jwt, controller.users.updated)//编辑用户信息
-  router.put('/api/user/user-info/logout/:id' , jwt, controller.users.Logout)//用户退出修改登录状态
-  router.put('/api/user/phone-bind/:id', jwt, controller.users.phoneBind)//用户手机绑定
-  router.delete('/api/user/phone-bind/:id', jwt, controller.users.relievePhone)//手机解除绑定
-  router.put('/api/user/wechat-bind/:id', jwt, controller.wechat.wechatBind)//用户微信绑定
-  router.delete('/api/user/wechat-bind/:id', jwt, controller.wechat.relieveWechat)//微信解除绑定
+  router.post('/api/web/sms/send', controller.users.sendSMS)//前台获取短信验证
+  router.post('/api/web/sms/login', controller.users.smsLogin)//前台用户登录
+  router.post('/api/web/auth/social/wechat/url', controller.wechat.wechat)//用户微信登录
+  router.get('/api/web/user/user-info/:id', jwt, controller.users.getUserInfo)//获取用户详情
+  router.put('/api/web/user/user-info/:id', jwt, controller.users.updated)//编辑用户信息
+  router.put('/api/web/user/user-info/logout/:id' , jwt, controller.users.Logout)//用户退出修改登录状态
+  router.put('/api/web/user/phone-bind/:id', jwt, controller.users.phoneBind)//用户手机绑定
+  router.delete('/api/web/user/phone-bind/:id', jwt, controller.users.relievePhone)//手机解除绑定
+  router.put('/api/web/user/wechat-bind/:id', jwt, controller.wechat.wechatBind)//用户微信绑定
+  router.delete('/api/web/user/wechat-bind/:id', jwt, controller.wechat.relieveWechat)//微信解除绑定
+
+  router.get('/api/web/course-recommand', jwt, controller.webIndex.course)//前台首页课程推荐
+  router.get('/api/web/course/:id', jwt, controller.webIndex.courseItem)//前台首页课程详情
 };

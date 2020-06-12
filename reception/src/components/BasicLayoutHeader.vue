@@ -50,7 +50,6 @@ export default {
     let id = localStorage.getItem("user_id");
     userModel.userInfo(id).then(res => {
       this.avatar_url = res.data.message[0].avatar_url
-      console.log(this.avatar_url)
     })
   },
   watch: {
@@ -87,7 +86,6 @@ export default {
     handLeave() {
       let id = localStorage.getItem("user_id");
       userModel.logout(id).then(res => {
-        console.log(res)
         if(res.data.code == 200){
           localStorage.removeItem("token");
           localStorage.removeItem("user_id");

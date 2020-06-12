@@ -1,12 +1,16 @@
 const PREFIX = "http://127.0.0.1:7001";
 
 export default {
-  send:`${PREFIX}/api/sms/send`,
-  users:`${PREFIX}/api/sms/login`,
-  userItem:(id) =>`${PREFIX}/api/user/user-info/${id}`,
-  logout:(id) => `${PREFIX}/api/user/user-info/logout/${id}`,
+  send:`${PREFIX}/api/web/sms/send`,
+  users:`${PREFIX}/api/web/sms/login`,
+  wechat:`${PREFIX}/api/web/auth/social/wechat/url`,
+  userItem:(id) =>`${PREFIX}/api/web/user/user-info/${id}`,
+  logout:(id) => `${PREFIX}/api/web/user/user-info/logout/${id}`,
   qiniu: `${PREFIX}/qiniu`,
-  wechat:`${PREFIX}/api/auth/social/wechat/url`,
-  phoneBind:(id) =>`${PREFIX}/api/user/phone-bind/${id}`,
-  wechatBind:(id) => `${PREFIX}/api/user/wechat-bind/${id}`
+  
+  phoneBind:(id) =>`${PREFIX}/api/web/user/phone-bind/${id}`,
+  wechatBind:(id) => `${PREFIX}/api/web/user/wechat-bind/${id}`,
+  
+  index:`${PREFIX}/api/web/course-recommand`,
+  indexItem:(id) => `${PREFIX}/api/web/course/${id}`
 }
