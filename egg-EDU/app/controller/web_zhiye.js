@@ -22,6 +22,23 @@ class WebZhiYeController extends Controller {
       ctx.body = {code:0,message:"服务器出错"}
     }
   }
+
+  async indexItemCourse() {
+    const ctx = this.ctx;
+    try{
+      let id = ctx.params.id;
+      const zhiyePath = await ctx.model.ZhiyePath.findAll({where:{id}})
+      const ZhiyeCourse = await ctx.model.ZhiyeCourses.findAll({
+        where:{path_id:id}
+      })
+      let course_id = ZhiyeCourse.map(data => data.course_id)
+      console.log(course_id)
+      const courses = await ctx.model.Course.findAll({where:{id:course_id}})
+      ctx.body = {code:200,message:courses,zhiyePath}
+    }catch(e){
+      ctx.body ={code:0,message:'服务器出错'}
+    }
+  }
 }
 
 module.exports = WebZhiYeController
