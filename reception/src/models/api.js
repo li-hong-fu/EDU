@@ -12,5 +12,8 @@ export default {
   wechatBind:(id) => `${PREFIX}/api/web/user/wechat-bind/${id}`,
   
   index:`${PREFIX}/api/web/course-recommand`,
-  indexItem:(id) => `${PREFIX}/api/web/course/${id}`
+  indexItem:(id) => `${PREFIX}/api/web/course/${id}`,
+  indexItemVideo:(id) => `${PREFIX}/api/web/course/section/${id}`,
+  zhiye:`${PREFIX}/api/web/zhiye`,
+  zhiyeItem:(id) => `${PREFIX}/api/web/zhiye/${id}`
 }

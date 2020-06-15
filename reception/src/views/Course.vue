@@ -1,49 +1,65 @@
 <template>
   <el-container>
     <el-header>
-      <div style="width:180px" class="page-title">21313131</div>
+      <div style="width:180px" class="page-title">{{course.name}}</div>
     </el-header>
     <el-container>
       <el-aside width="200px">
         <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose">
-          <el-submenu index="1">
+          :default-active="`${path}`"
+          class="el-menu-vertical-demo">
+          <el-submenu 
+            v-for="(item) in chapter"
+            :key="item.id"
+            :index="`chapter${item.id}`">
             <template slot="title">
-              <span>导航一</span>
+              <span>{{item.name}}</span>
             </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item-group
+              v-for="section in item.section"
+              :key="section.id">
+              <el-menu-item 
+                :index="`${section.id}`"
+                @click="handleOpen(section.id)">{{section.name}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import indexModel from "../models/index"
 export default {
   data() {
     return {
       course:[],
-      chapter:[]
+      chapter:[],
+      path:null
     }
   },
   created() {
-    console.log(this.$route.params)
+    let id = this.$route.params.id;
+    let sectionId = this.$route.params.sectionId;
+    indexModel.indexItem(id).then(res => {
+      this.course = res.data.course[0];
+      this.chapter = res.data.chapter;
+      this.getPath(sectionId)
+    })
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    getPath(id) {
+      this.path = id
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen(sectionId){
+      let id = this.$route.params.id;
+      this.$router.push({ path: "/api/web/course/video/" + id + '/' + sectionId});
     }
-},
+  },
 }
 </script>
 

@@ -119,4 +119,7 @@ module.exports = app => {
 
   router.get('/api/web/course-recommand', jwt, controller.webIndex.course)//前台首页课程推荐
   router.get('/api/web/course/:id', jwt, controller.webIndex.courseItem)//前台首页课程详情
+  router.get('/api/web/course/section/:id', jwt, controller.webIndex.courseItemVideo)//前台首页课程视频
+  router.get('/api/web/zhiye', jwt, controller.webZhiye.index)//前台职业列表
+  router.get('/api/web/zhiye/:id', jwt, controller.webZhiye.indexItem)//前台职业详情
 };

@@ -52,7 +52,7 @@ export default {
   methods: {
     sectionItem(row) {
       let id = this.$route.params.id;
-      this.$router.push({ path: "/api/web/course/" + id + "/" + row.id });
+      this.$router.push({ path: "/api/web/course/video/" + id + '/' + row.id});
     }
   },
 }

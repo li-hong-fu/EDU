@@ -39,6 +39,17 @@ class webIndexController extends Controller {
       ctx.body = {code:0,message:e}
     }
   }
+
+  async courseItemVideo() {
+    const ctx = this.ctx;
+    try{
+      let id = ctx.params.id;
+      const courseSection = await ctx.model.CourseSection.findByPk(id)
+      ctx.body = {code:200,message:courseSection}
+    }catch(e){
+      ctx.body = {code:0,message:'发生错误'}
+    }
+  }
 }
 
 module.exports = webIndexController

@@ -7,5 +7,8 @@ export default {
   },
   indexItem: function(id){
     return request.get(api.indexItem(id))
+  },
+  indexItemVideo: function(id){
+    return request.get(api.indexItemVideo(id))
   }
 }

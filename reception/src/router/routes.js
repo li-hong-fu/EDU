@@ -8,6 +8,8 @@ const IndexItem = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/IndexItem.vue");
 const Occupation = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Occupation.vue");
+const OccupationItem = () =>
+  import(/* webpackChunkName: "BasicLayout" */ "@/views/OccupationItem.vue");
 const Project = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Project.vue");
 const Skill = () =>
@@ -20,6 +22,8 @@ const UserSecurity = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/UserSecurity.vue");
 const Course = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Course.vue");
+const CourseMain = () =>
+  import(/* webpackChunkName: "BasicLayout" */ "@/views/CourseMain.vue");
 
 export default [
   {
@@ -56,6 +60,11 @@ export default [
             title: "职业课"
           }
         },
+      },
+      {
+        path:"/api/occupation/item/:id",
+        name:"OccupationItem",
+        component:OccupationItem
       },
       {
         path:"/api/project",
@@ -111,6 +120,13 @@ export default [
   {
     path:'/api/web/course/:id/:sectionId',
     name:'Course',
-    component:Course
+    component:Course,
+    children:[
+      {
+        path:'/api/web/course/video/:id/:sectionId',
+        name:'CourseMain',
+        component:CourseMain
+      }
+    ]
   }
 ]

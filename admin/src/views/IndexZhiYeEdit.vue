@@ -32,6 +32,13 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
+        <el-form-item label="职业状态:" prop="status">
+          <el-switch
+            v-model="ruleForm.status"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="zhiyeEdit">保存</el-button>
         </el-form-item>
@@ -139,7 +146,8 @@ export default {
       ruleForm: {
         name: "",
         description: "",
-        image_url: ""
+        image_url: "",
+        status:true
       },
       zhiye_path: [],
       pathForm: {
@@ -166,6 +174,7 @@ export default {
     let id = this.$route.params.id;
     zhiyeModel.indexItem(id).then(res => {
       this.ruleForm = res.data.message;
+      this.ruleForm.status = this.ruleForm.status == 1? true:false
     });
 
     zhiyePathModel.index(id).then(res => {
@@ -227,11 +236,13 @@ export default {
       let name = this.ruleForm.name;
       let description = this.ruleForm.description;
       let image_url = this.ruleForm.image_url;
-      let params = { name, description, image_url };
+      let status = this.ruleForm.status;
+      let params = { name, description, image_url, status };
       if (!name || !description || !image_url) {
         this.$message.info("缺少必要参数!");
         return;
       }
+      console.log(params)
       zhiyeModel.updated(id, params).then(res => {
         if (res.data.code == 200) {
           this.$message.success("编辑成功!");

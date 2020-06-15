@@ -48,6 +48,7 @@ class ZhiyeController extends Controller {
       let name = ctx.request.body.name;
       let description = ctx.request.body.description;
       let image_url = ctx.request.body.image_url;
+      let status = ctx.request.body.status;
       let updated_at = new Date()
 
       if(!name || !description || !image_url){
@@ -55,7 +56,7 @@ class ZhiyeController extends Controller {
         return
       }
       await ctx.model.Zhiye.update(
-        {name,description,image_url,updated_at},
+        {name,description,image_url,status,updated_at},
         {where:{id}}
       )
       ctx.body = {code:200,message:"编辑成功!"}
