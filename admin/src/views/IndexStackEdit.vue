@@ -17,10 +17,10 @@
       </el-form-item>
       <el-form-item
         label="技能提示:"
-        prop="tag_line"
+        prop="slug"
         style="display:inline-block;width:300px"
       >
-        <el-input v-model="ruleForm.tag_line"></el-input>
+        <el-input v-model="ruleForm.slug"></el-input>
       </el-form-item>
       <el-form-item label="技能介绍:" prop="description">
         <el-input v-model="ruleForm.description" minlength="10"></el-input>
@@ -68,7 +68,7 @@ export default {
           { required: true, message: "请输入技能名称", trigger: "blur" },
           { min: 3, max: 20, message: "长度在 1 到 20 个字符", trigger: "blur" }
         ],
-        tag_line: [
+        slug: [
           { required: true, message: "请输入技能提示", trigger: "blur" },
           { min: 3, max: 20, message: "长度在 1 到 20 个字符", trigger: "blur" }
         ],
@@ -82,6 +82,7 @@ export default {
   created() {
     let id = this.$route.params.id;
     stackModel.getStack(id).then(res => {
+      console.log(res)
       this.ruleForm = res.data.message;
     });
   },

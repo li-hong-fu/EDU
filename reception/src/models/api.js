@@ -16,5 +16,7 @@ export default {
   indexItemVideo:(id) => `${PREFIX}/api/web/course/section/${id}`,
   zhiye:`${PREFIX}/api/web/zhiye`,
   zhiyeItem:(id) => `${PREFIX}/api/web/zhiye/${id}`,
-  zhiyeItemCourse:(id) => `${PREFIX}/api/web/zhiye/path/${id}`
+  zhiyeItemCourse:(id) => `${PREFIX}/api/web/zhiye/path/${id}`,
+  
+  stack:`${PREFIX}/spi/web/stack`
 }

@@ -40,6 +40,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handlePagination"
+      :current-page.sync="currentPage"
+      :page-sizes="pageSizes"
+      :page-size="pageSize"
+      layout="sizes, prev, pager, next"
+      :total="total">
+    </el-pagination>
   </div>
 </template>
 
@@ -48,15 +57,45 @@ import QuestionModel from "../models/question";
 export default {
   data() {
     return {
-      tableData: []
+      tableData: [],
+      total: null,
+      totalPage: null,
+      pageSizes: [20, 30, 40, 50],
+      pageSize: 20,
+      currentPage: 1
     };
   },
   created() {
-    QuestionModel.showQuestion().then(res => {
-      this.tableData = res.data.questions;
-    });
+    let currentPage = this.currentPage;
+    let pageSize = this.pageSize;
+    let params = { currentPage, pageSize }
+    QuestionModel.showQuestion(params).then(res => {
+      this.tableData = res.data.message;
+      this.total = res.data.total;
+    })
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      val = val || 20
+      let pageSize = this.pageSize = val
+      this.totalPage = Math.ceil(this.total / this.pageSize)
+      let currentPage = this.currentPage
+      let params = { currentPage, pageSize }
+      QuestionModel.showQuestion(params).then(res => {
+        this.tableData = res.data.message;
+        this.total = res.data.total;
+      })
+    },
+    handlePagination(val) {
+      console.log(`当前页: ${val}`);
+      let currentPage = this.currentPage = val || 1
+      let  params = { currentPage }
+      QuestionModel.showQuestion(params).then(res => {
+        this.tableData = res.data.message;
+        this.total = res.data.total;
+      })
+    },
     handAdd() {
       this.$router.push({ path: "/sqb/question/create" });
     },

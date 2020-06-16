@@ -10,6 +10,7 @@ html,body{
   width: 100%;
   margin: 0;
   padding: 0;
+  min-width: 800px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

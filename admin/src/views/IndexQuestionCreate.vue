@@ -46,8 +46,8 @@
         </el-select>
       </el-form-item>
       <el-form-item label="选项:" style="height:30px;"></el-form-item>
-      <el-form-item v-for="option in ruleForm.option" :key="option.key">
-        <el-input v-model="option.value" style="width:89%"></el-input>
+      <el-form-item v-for="(options, index) in ruleForm.option" :key="index">
+        <el-input v-model="ruleForm.option[index]" style="width:89%"></el-input>
         <el-button @click.prevent="removeDomain(option)">删除</el-button>
       </el-form-item>
       <el-form-item>
@@ -55,10 +55,10 @@
       </el-form-item>
       <el-form-item>
         <el-radio
-          v-for="(currect, index) in ruleForm.currect"
-          :key="currect.key"
+          v-for="(correct, index) in ruleForm.correct"
+          :key="correct.key"
           @change="getCurrectIndex"
-          v-model="currect_index"
+          v-model="correct_index"
           :label="index"
           >{{ arr[index] }}</el-radio
         >
@@ -98,18 +98,18 @@ export default {
             label: "高阶"
           }
         ],
-        option: [{ value: "" }],
-        currect: [{ value: "" }]
+        option: [],
+        correct: []
       },
       stack_id: "",
       level_id: "",
-      currect_index: "",
+      correct_index: "",
       arr: ["A", "B", "C", "D"]
     };
   },
   created() {
     stackModel.showStack().then(res => {
-      this.ruleForm.stack = res.data.message;
+      this.ruleForm.stack = res.data.stack;
     });
   },
   methods: {
@@ -118,10 +118,10 @@ export default {
       let stack_id = this.stack_id;
       let level_id = this.level_id;
       let optionList = this.ruleForm.option;
-      // let option = JSON.parse(JSON.stringify(optionList))
       let option = JSON.stringify(optionList);
-      let currect_index = this.currect_index;
-      let params = { stem, stack_id, level_id, currect_index, option };
+      let correct_index = this.correct_index;
+      let params = { stem, stack_id, level_id, correct_index, option };
+      console.log(params)
       questionModel.AddQuestion(params).then(res => {
         console.log(res);
         if (res.data.code === 200) {
@@ -134,27 +134,21 @@ export default {
       var index = this.ruleForm.option.indexOf(option);
       if (index !== -1) {
         this.ruleForm.option.splice(index, 1);
-        this.ruleForm.currect.splice(index, 1);
+        this.ruleForm.correct.splice(index, 1);
       }
     },
     addDomain() {
       let ruleForm = this.ruleForm;
 
-      if (ruleForm.option.length >= 4 && ruleForm.currect.length >= 4) {
+      if (ruleForm.option.length >= 4 && ruleForm.correct.length >= 4) {
         return;
       }
 
-      ruleForm.option.push({
-        value: "",
-        key: Date.now()
-      });
-      ruleForm.currect.push({
-        index: "",
-        key: Date.now()
-      });
+      ruleForm.option.push('');
+      ruleForm.correct.push('');
     },
     getCurrectIndex(e) {
-      this.currect_index = e;
+      this.correct_index = e;
     }
   }
 };

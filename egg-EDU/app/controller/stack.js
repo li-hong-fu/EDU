@@ -6,8 +6,16 @@ class StackController extends Controller {
   async index() {
     const { ctx } = this;
     try{
-      const Stacks = await ctx.model.Stack.findAll()
-      ctx.body = {code:200,message:Stacks}
+      let currentPage = ctx.request.query.currentPage || 1;
+      let pageSize = ctx.request.query.pageSize || 20;
+      let offset = (currentPage - 1) * pageSize;
+      const Stacks = await ctx.model.Stack.findAll({
+        offset,
+        limit:parseInt(pageSize)
+      })
+      const stack = await ctx.model.Stack.findAll();
+      let total = stack.length
+      ctx.body = {code:200,message:Stacks,total,stack}
     }catch(e){
       ctx.body = {code:0,message:'获取失败!'}
     }

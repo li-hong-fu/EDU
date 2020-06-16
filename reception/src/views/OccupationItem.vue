@@ -15,7 +15,7 @@
             :span="8"
             v-for="course in course"
             :key="course.id"
-            @click.native="courseItem">
+            @click.native="courseItem(course.id)">
             <el-card
               :body-style="{ padding: '0px' }"
               shadow="hover">
@@ -61,11 +61,6 @@ export default {
       this.openItem(this.path)
     })
   },
-  watch: {
-    path(val){
-      this.openItem(val)
-    }
-  },
   methods: {
     openItem(id){
       zhiyePathModel.indexItemCourse(id).then(res => {
@@ -73,8 +68,8 @@ export default {
         this.zhiyePathItem = res.data.zhiyePath[0]
       })
     },
-    courseItem(){
-      console.log(123)
+    courseItem(id){
+      this.$router.push({ path: "/api/index/item/" + id });
     }
   },
 }

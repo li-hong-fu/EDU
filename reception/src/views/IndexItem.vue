@@ -1,9 +1,6 @@
 <template>
   <div class="page-container">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/api/index' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>{{course.name}}</el-breadcrumb-item>
-    </el-breadcrumb>
+    <el-page-header @back="goBack" :content="course.short_name"></el-page-header>
     <el-card class="box-card">
       <div class="course">
         <el-image :src="course.image_url"></el-image>
@@ -50,6 +47,9 @@ export default {
     })
   },
   methods: {
+    goBack() {
+      window.history.back();
+    },
     sectionItem(row) {
       let id = this.$route.params.id;
       this.$router.push({ path: "/api/web/course/video/" + id + '/' + row.id});
@@ -60,7 +60,7 @@ export default {
 
 <style lang="less" scoped>
 .page-container{
-  .el-breadcrumb{
+  .el-page-header{
     margin-bottom: 20px;
   }
   .box-card{

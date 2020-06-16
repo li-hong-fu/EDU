@@ -10,8 +10,6 @@ const Occupation = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Occupation.vue");
 const OccupationItem = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/OccupationItem.vue");
-// const OccupationItemContent = () =>
-//   import(/* webpackChunkName: "BasicLayout" */ "@/views/OccupationItemContent.vue");
 const Project = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Project.vue");
 const Skill = () =>
@@ -67,13 +65,6 @@ export default [
         path:"/api/occupation/item/:id",
         name:"OccupationItem",
         component:OccupationItem
-        // children:[
-        //   {
-        //     path:"/api/occupation/item/content/:id",
-        //     name:"OccupationItemContent",
-        //     component:OccupationItemContent
-        //   }
-        // ]
       },
       {
         path:"/api/project",
