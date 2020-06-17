@@ -126,4 +126,5 @@ module.exports = app => {
   router.get('/api/web/zhiye/path/:id', jwt, controller.webZhiye.indexItemCourse)//前台职业详情--课程
 
   router.get('/spi/web/stack', jwt, controller.webStack.index)//前台技能盏
+  router.get('/api/stack/:id/random', jwt, controller.webStack.indexItem)//前台技能答题
 };

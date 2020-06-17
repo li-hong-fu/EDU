@@ -14,6 +14,8 @@ const Project = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Project.vue");
 const Skill = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/views/Skill.vue");
+const SkillRandom = () =>
+  import(/* webpackChunkName: "BasicLayout" */ "@/views/SkillRandom.vue");
 const UserInfo = () =>
   import(/* webpackChunkName: "BasicLayout" */ "@/components/BasicLayoutUser.vue");
 const UserEdit = () =>
@@ -85,6 +87,11 @@ export default [
             title: "技能测评"
           }
         },
+      },
+      {
+        path:"/api/skill/:id",
+        name:"SkillRandom",
+        component:SkillRandom,
       },
       {
         path:"api/user/info",

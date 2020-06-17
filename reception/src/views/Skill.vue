@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handStackItem(id){
-      console.log(id)
+      this.$router.push({path:`/api/skill/${id}`})
     }
   },
 }

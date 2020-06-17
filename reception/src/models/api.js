@@ -18,5 +18,6 @@ export default {
   zhiyeItem:(id) => `${PREFIX}/api/web/zhiye/${id}`,
   zhiyeItemCourse:(id) => `${PREFIX}/api/web/zhiye/path/${id}`,
   
-  stack:`${PREFIX}/spi/web/stack`
+  stack:`${PREFIX}/spi/web/stack`,
+  stackRandom:(id) => `${PREFIX}/api/stack/${id}/random`
 }
